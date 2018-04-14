@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Inventory</string>
+    <string name="empty_database">There is no information saved you can add by fill the fields in add inventory </string>
+    <string name="Product_Name">Product Name : </string>
+    <string name="Enter_Product_Name">Enter Product Name</string>
+    <string name="Price">Price : </string>
+    <string name="Enter_Product_Price">Enter Product Price</string>
+    <string name="Quantity">Quantity : </string>
+    <string name="Enter_Quantity">Enter Quantity</string>
+    <string name="Supplier_Name">Supplier Name : </string>
+    <string name="Enter_Supplier_Name">Enter Supplier Name</string>
+    <string name="Supplier_Phone">Supplier Phone : </string>
+    <string name="Enter_Supplier_Phone">Enter Supplier Phone</string>
+    <string name="Save">Save</string>
+    <string name="increase">+</string>
+    <string name="decrease">-</string>
+    <string name="Supply">Supply</string>
+    <string name="delete">delete</string>
+    <string name="Update">Update</string>
+    <string name="Display_Inventories">Display Inventories</string>
+    <string name="Add_Inventory">Add Inventory</string>
+    <string name="sell">Sell</string>
+    <string name="fillData">You Should fill all fields</string>
+    <string name="invalid_price">Invalid Price</string>
+    <string name="invalid_quantity">Invalid Quantity</string>
+    <string name="invalid_phone">Invalid Phone number</string>
+    <string name="error_saving">Error saving inventory</string>
+    <string name="inventory_saved">Inventory saved</string>
+    <string name="update_failed">update product failed</string>
+    <string name="update_success">update inventory successfull</string>
+
+</resources>

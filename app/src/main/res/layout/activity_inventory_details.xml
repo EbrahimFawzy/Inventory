@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".InventoryDetails">
+
+    <TextView
+        android:id="@+id/nameTextView"
+        style="@style/detailsTextView"
+        android:text="@string/Product_Name" />
+
+    <EditText
+        android:id="@+id/nameEditText"
+        style="@style/editTextStyle"
+        android:hint="@string/Enter_Product_Name"
+        android:inputType="text" />
+
+    <TextView
+        style="@style/detailsTextView"
+        android:text="@string/Price" />
+
+    <EditText
+        android:id="@+id/priceEditText"
+        style="@style/editTextStyle"
+        android:hint="@string/Enter_Product_Price"
+        android:inputType="numberDecimal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/detailsTextView"
+            android:text="@string/Quantity" />
+
+        <Button
+            android:id="@+id/increase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/increase" />
+
+        <EditText
+            android:id="@+id/quantityEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/Enter_Quantity"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/decrease"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/decrease" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/detailsTextView"
+        android:text="@string/Supplier_Name" />
+
+    <EditText
+        android:id="@+id/supplierEditText"
+        style="@style/editTextStyle"
+        android:hint="@string/Enter_Supplier_Name"
+        android:inputType="text" />
+
+    <TextView
+        style="@style/detailsTextView"
+        android:text="@string/Supplier_Phone" />
+
+    <EditText
+        android:id="@+id/supplierPhonEditText"
+        style="@style/editTextStyle"
+        android:hint="@string/Enter_Supplier_Phone"
+        android:inputType="number" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/supply"
+            style="@style/btnStyle"
+            android:text="@string/Supply" />
+
+        <Button
+            android:id="@+id/delete"
+            style="@style/btnStyle"
+            android:text="@string/delete" />
+
+        <Button
+            android:id="@+id/update"
+            style="@style/btnStyle"
+            android:text="@string/Update" />
+    </LinearLayout>
+
+</LinearLayout>
