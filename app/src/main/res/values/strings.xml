@@ -27,6 +27,11 @@
     <string name="error_saving">Error saving inventory</string>
     <string name="inventory_saved">Inventory saved</string>
     <string name="update_failed">update product failed</string>
-    <string name="update_success">update inventory successfull</string>
+    <string name="update_success">update inventory successfully</string>
+    <string name="delete_dialog_msg">Delete this product?</string>
+    <string name="cancel">Cancel</string>
+    <string name="Product_Details">Product Details</string>
+    <string name="Inventories">Inventories</string>
+    <string name="action_save">Save</string>
 
 </resources>

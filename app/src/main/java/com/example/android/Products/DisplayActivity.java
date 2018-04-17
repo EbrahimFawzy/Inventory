@@ -1,21 +1,24 @@
 package com.example.android.Products;
 
 import android.app.LoaderManager;
+import android.content.ContentUris;
 import android.content.CursorLoader;
 import android.content.Intent;
 
 import android.content.Loader;
 import android.database.Cursor;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import Data.productsContract;
 import Data.productsDbHelper;
 
 public class DisplayActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
-    private static int PRODUCT_LOADER = 0;
+    private final static int PRODUCT_LOADER = 0;
     public productCursorAdapter adapter;
     public productsDbHelper mProductsDbHelper;
 
@@ -23,6 +26,7 @@ public class DisplayActivity extends AppCompatActivity implements LoaderManager.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
+        this.setTitle(R.string.Inventories);
         adapter = new productCursorAdapter(this, null);
         ListView productListView = (ListView) findViewById(R.id.list);
         View emptyView = findViewById(R.id.empty_view);
@@ -32,8 +36,9 @@ public class DisplayActivity extends AppCompatActivity implements LoaderManager.
     }
 
     public void clickOnItem(long id) {
-        Intent intent = new Intent(this, InventoryDetails.class);
-        intent.putExtra("Id", id);
+        Intent intent = new Intent(DisplayActivity.this, InventoryDetails.class);
+        Uri currentProductUri = ContentUris.withAppendedId(productsContract.productEntry.CONTENT_URI, id);
+        intent.setData(currentProductUri);
         startActivity(intent);
     }
 

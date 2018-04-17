@@ -23,6 +23,7 @@ public class AddInventory extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_inventory);
+        this.setTitle(R.string.Add_Inventory);
         Intent intent = getIntent();
         mCurrentUri = intent.getData();
         productName = findViewById(R.id.nameEditText);
@@ -35,6 +36,7 @@ public class AddInventory extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addInventory();
+                finish();
             }
         });
     }

@@ -1,66 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:fillViewport="true"
     tools:context=".AddInventory">
 
-    <TextView
-        style="@style/textViewStyle"
-        android:text="@string/Product_Name" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/nameEditText"
-        style="@style/editTextStyle"
-        android:hint="@string/Enter_Product_Name"
-        android:inputType="text" />
+        <TextView
+            style="@style/textViewStyle"
+            android:text="@string/Product_Name" />
 
-    <TextView
-        style="@style/textViewStyle"
-        android:text="@string/Price" />
+        <EditText
+            android:id="@+id/nameEditText"
+            style="@style/editTextStyle"
+            android:hint="@string/Enter_Product_Name"
+            android:inputType="text" />
 
-    <EditText
-        android:id="@+id/priceEditText"
-        style="@style/editTextStyle"
-        android:hint="@string/Enter_Product_Price"
-        android:inputType="numberDecimal" />
+        <TextView
+            style="@style/textViewStyle"
+            android:text="@string/Price" />
 
-    <TextView
-        style="@style/textViewStyle"
-        android:text="@string/Quantity" />
+        <EditText
+            android:id="@+id/priceEditText"
+            style="@style/editTextStyle"
+            android:hint="@string/Enter_Product_Price"
+            android:inputType="numberDecimal" />
 
-    <EditText
-        android:id="@+id/quantityEditText"
-        style="@style/editTextStyle"
-        android:hint="@string/Enter_Quantity"
-        android:inputType="number" />
+        <TextView
+            style="@style/textViewStyle"
+            android:text="@string/Quantity" />
 
-    <TextView
-        style="@style/textViewStyle"
-        android:text="@string/Supplier_Name" />
+        <EditText
+            android:id="@+id/quantityEditText"
+            style="@style/editTextStyle"
+            android:hint="@string/Enter_Quantity"
+            android:inputType="number" />
 
-    <EditText
-        android:id="@+id/supplierEditText"
-        style="@style/editTextStyle"
-        android:hint="@string/Enter_Supplier_Name"
-        android:inputType="text" />
+        <TextView
+            style="@style/textViewStyle"
+            android:text="@string/Supplier_Name" />
 
-    <TextView
-        style="@style/textViewStyle"
-        android:text="@string/Supplier_Phone" />
+        <EditText
+            android:id="@+id/supplierEditText"
+            style="@style/editTextStyle"
+            android:hint="@string/Enter_Supplier_Name"
+            android:inputType="text" />
 
-    <EditText
-        android:id="@+id/supplierPhonEditText"
-        style="@style/editTextStyle"
-        android:hint="@string/Enter_Supplier_Phone"
-        android:inputType="number" />
+        <TextView
+            style="@style/textViewStyle"
+            android:text="@string/Supplier_Phone" />
 
-    <Button
-        android:id="@+id/save_inventory"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:text="@string/Save" />
-</LinearLayout>
+        <EditText
+            android:id="@+id/supplierPhonEditText"
+            style="@style/editTextStyle"
+            android:hint="@string/Enter_Supplier_Phone"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/save_inventory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/Save" />
+    </LinearLayout>
+</ScrollView>
