@@ -68,13 +68,13 @@ public class InventoryDetails extends AppCompatActivity implements LoaderManager
         Increase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addOne();
+                addOne(currentUri);
             }
         });
         Decrease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                subOne();
+                subOne(currentUri);
             }
         });
 
@@ -95,28 +95,78 @@ public class InventoryDetails extends AppCompatActivity implements LoaderManager
         Update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateProduct();
+                updateProduct(currentUri);
             }
         });
     }
 
 
-    private void updateProduct() {
+    private void updateProduct(Uri uri) {
         String PName = productName.getText().toString().trim();
         String PPrice = price.getText().toString().trim();
         String PQuantity = quantity.getText().toString().trim();
         String SName = supplierName.getText().toString().trim();
         String SPhone = supplierPhone.getText().toString().trim();
-        ContentValues values=new ContentValues();
-        values.put(productsContract.productEntry.COLUMN_PRODUCT_NAME,PName);
-        values.put(productsContract.productEntry.COLUMN_PRODUCT_PRICE,Float.parseFloat(PPrice));
-        values.put(productsContract.productEntry.COLUMN_PRODUCT_QUANTITY,Integer.parseInt(PQuantity));
-        values.put(productsContract.productEntry.COLUMN_PRODUCT_SUPPLIERNAME,SName);
-        values.put(productsContract.productEntry.COLUMN_PRODUCT_SUPPLIERPHONE,Integer.parseInt(SPhone));
-        getContentResolver().update(currentUri,values,null,null);
+        if (uri == null && TextUtils.isEmpty(PName) && TextUtils.isEmpty(PPrice) &&
+                TextUtils.isEmpty(PQuantity) && TextUtils.isEmpty(SName) && TextUtils.isEmpty(SPhone)) {
+            Toast.makeText(this, R.string.fillData, Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (TextUtils.isEmpty(PName)) {
+            Toast.makeText(this, R.string.Enter_Product_Name, Toast.LENGTH_LONG).show();
+            return;
+        }
+        float price = 0;
+        if (!(TextUtils.isEmpty(PPrice)) && Float.parseFloat(PPrice) > 0) {
+            price = Float.parseFloat(PPrice);
+        } else {
+            Toast.makeText(this, R.string.invalid_price, Toast.LENGTH_LONG).show();
+            return;
+        }
+        int quantity = 0;
+        if (!(TextUtils.isEmpty(PQuantity)) && Integer.parseInt(PQuantity) > 0) {
+            quantity = Integer.parseInt(PQuantity);
+        } else {
+            Toast.makeText(this, R.string.invalid_quantity, Toast.LENGTH_LONG).show();
+            return;
+        }
+        int phone = 0;
+        if (!(TextUtils.isEmpty(SPhone)) && Integer.parseInt(SPhone) > 0) {
+            phone = Integer.parseInt(SPhone);
+        } else {
+            Toast.makeText(this, R.string.invalid_phone, Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (TextUtils.isEmpty(SName)) {
+            Toast.makeText(this, R.string.Enter_Supplier_Name, Toast.LENGTH_LONG).show();
+            return;
+        }
+        ContentValues values = new ContentValues();
+        values.put(Data.productsContract.productEntry.COLUMN_PRODUCT_NAME, PName);
+        values.put(Data.productsContract.productEntry.COLUMN_PRODUCT_PRICE, price);
+        values.put(Data.productsContract.productEntry.COLUMN_PRODUCT_QUANTITY, quantity);
+        values.put(Data.productsContract.productEntry.COLUMN_PRODUCT_SUPPLIERNAME, SName);
+        values.put(Data.productsContract.productEntry.COLUMN_PRODUCT_SUPPLIERPHONE, phone);
+        if (uri == null) {
+            Uri newUri = getContentResolver().insert(Data.productsContract.productEntry.CONTENT_URI,
+                    values);
+            if (newUri == null) {
+                Toast.makeText(this, R.string.error_saving, Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, R.string.inventory_saved, Toast.LENGTH_LONG).show();
+            }
+        } else {
+            int rowsAffected =  getContentResolver().update(uri,values,productsContract.productEntry._ID+"=?",
+                    new String[]{getIntent().getStringExtra("id")});
+            if (rowsAffected == 0) {
+                Toast.makeText(this, R.string.update_failed, Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, R.string.update_success, Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
-    private void subOne() {
+    private void subOne(Uri uri) {
         String Quantity = quantity.getText().toString();
         int productQuantity = Integer.parseInt(Quantity);
         if (Quantity.isEmpty()) {
@@ -125,6 +175,11 @@ public class InventoryDetails extends AppCompatActivity implements LoaderManager
             productQuantity = productQuantity - 1;
         }
         quantity.setText(String.valueOf(productQuantity));
+        ContentValues values=new ContentValues();
+        values.put(productsContract.productEntry.COLUMN_PRODUCT_QUANTITY,productQuantity);
+        getContentResolver().update(uri,values,productsContract.productEntry._ID+"=?",
+                new String[]{getIntent().getStringExtra("id")});
+
     }
 
 
@@ -134,7 +189,7 @@ public class InventoryDetails extends AppCompatActivity implements LoaderManager
         startActivity(intent);
     }
 
-    private void addOne() {
+    private void addOne(Uri uri) {
         String Quantity = quantity.getText().toString();
         int productQuantity = Integer.parseInt(Quantity);
         if (Quantity.isEmpty()) {
@@ -143,6 +198,10 @@ public class InventoryDetails extends AppCompatActivity implements LoaderManager
             productQuantity = productQuantity + 1;
         }
         quantity.setText(String.valueOf(productQuantity));
+        ContentValues values =new ContentValues();
+        values.put(productsContract.productEntry.COLUMN_PRODUCT_QUANTITY,productQuantity);
+        getContentResolver().update(uri,values,productsContract.productEntry._ID+"=?",
+                new String[]{getIntent().getStringExtra("id")});
     }
 
     private void showDeleteConfirmationDialog() {

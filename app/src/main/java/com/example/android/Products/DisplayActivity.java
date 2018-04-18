@@ -39,6 +39,7 @@ public class DisplayActivity extends AppCompatActivity implements LoaderManager.
         Intent intent = new Intent(DisplayActivity.this, InventoryDetails.class);
         Uri currentProductUri = ContentUris.withAppendedId(productsContract.productEntry.CONTENT_URI, id);
         intent.setData(currentProductUri);
+        intent.putExtra("id",String.valueOf(id));
         startActivity(intent);
     }
 
